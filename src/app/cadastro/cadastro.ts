@@ -18,4 +18,8 @@ import { Cliente } from './cliente';
 })
 export class Cadastro {
   cliente: Cliente = Cliente.NewClient(); //cria novo cliente
+
+  Salvar() {
+    console.log(this.cliente);
+  }
 }
