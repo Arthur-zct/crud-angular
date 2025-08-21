@@ -9,7 +9,7 @@ export class Cliente {
 
     //criar um cliente vazio
     static NewClient(): Cliente {
-        let cliente = new Cliente();
+        const cliente = new Cliente();
         cliente.id = uuid(); //gera um id unico para o cliente
         return cliente;
     }
