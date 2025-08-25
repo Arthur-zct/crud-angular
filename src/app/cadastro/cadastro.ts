@@ -7,7 +7,7 @@ import {MatInputModule } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Cliente } from './cliente';
-
+import { ClienteService } from '../cliente.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -19,7 +19,11 @@ import { Cliente } from './cliente';
 export class Cadastro {
   cliente: Cliente = Cliente.NewClient(); //cria novo cliente
 
+  //importa um service
+  constructor(private service: ClienteService) { }
+
   Salvar() {
+    this.service
     console.log(this.cliente);
   }
 }
