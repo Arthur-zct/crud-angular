@@ -23,7 +23,6 @@ export class Cadastro {
   constructor(private service: ClienteService) { }
 
   Salvar() {
-    this.service
-    console.log(this.cliente);
+    this.service.salvar(this.cliente);
   }
 }
