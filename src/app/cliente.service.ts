@@ -9,7 +9,9 @@ export class ClienteService {
   static REPO_CLIENTES = "_CLIENTES"; 
 
   salvar(cliente: Cliente) {
-    console.log('Cliente salvo:', cliente);
+    const storage = this.obterStorage(); //pega o storage atual
+    storage.push(cliente);
+    localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage));
   }
 
   obterStorage() : Cliente[] { //cliente é o que vai ser retornado
