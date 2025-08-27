@@ -14,7 +14,7 @@ export class ClienteService {
     localStorage.setItem(ClienteService.REPO_CLIENTES, JSON.stringify(storage));
   }
 
-  obterStorage() : Cliente[] { //cliente é o que vai ser retornado
+  private obterStorage() : Cliente[] { //cliente é o que vai ser retornado
     const repositorioClientes = localStorage.getItem(ClienteService.REPO_CLIENTES);
     if (repositorioClientes) { //caso ja tenha
       const clientes: Cliente[] = JSON.parse(repositorioClientes); //parse recebe a string repositorioclientes e transforma em um array de clientes (localstorage só aceita string)
