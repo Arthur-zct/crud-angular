@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { ClienteService } from '../cliente.service';
+import { Cliente } from '../cadastro/cliente';
 @Component({
   selector: 'app-consulta',
   imports: [MatInputModule, MatCardModule, FlexLayoutModule, MatIconModule, FormsModule, MatTableModule, MatButtonModule],
@@ -14,6 +15,8 @@ import { ClienteService } from '../cliente.service';
   styleUrl: './consulta.scss'
 })
 export class Consulta {
+
+  listaClientes: Cliente[] = []; //cria vazio
 
   constructor(private service: ClienteService) { }
 
