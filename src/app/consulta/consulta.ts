@@ -5,11 +5,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
-import { MatButton } from "../../../node_modules/@angular/material/button/index";
-
+import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-consulta',
-  imports: [MatInputModule, MatCardModule, FlexLayoutModule, MatIconModule, FormsModule, MatTableModule, MatButton],
+  imports: [MatInputModule, MatCardModule, FlexLayoutModule, MatIconModule, FormsModule, MatTableModule, MatButtonModule],
   templateUrl: './consulta.html',
   styleUrl: './consulta.scss'
 })
