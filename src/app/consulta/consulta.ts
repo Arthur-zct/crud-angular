@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -14,10 +14,14 @@ import { Cliente } from '../cadastro/cliente';
   templateUrl: './consulta.html',
   styleUrl: './consulta.scss'
 })
-export class Consulta {
+export class Consulta implements OnInit {
 
   listaClientes: Cliente[] = []; //cria vazio
 
   constructor(private service: ClienteService) { }
+
+  ngOnInit() {
+    this.listaClientes = this.service.pesquisarClientes(''); //preenche a lista com os clientes
+  }
 
 }
