@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 export class Consulta implements OnInit {
 
   listaClientes: Cliente[] = []; //cria vazio
+  colunasTable: string[] = ['id', 'nome', 'cpf', 'dataNascimento', 'email'];
 
   constructor(private service: ClienteService) { }
 
