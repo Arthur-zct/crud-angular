@@ -8,9 +8,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { ClienteService } from '../cliente.service';
 import { Cliente } from '../cadastro/cliente';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-consulta',
-  imports: [MatInputModule, MatCardModule, FlexLayoutModule, MatIconModule, FormsModule, MatTableModule, MatButtonModule],
+  imports: [MatInputModule, MatCardModule, FlexLayoutModule, MatIconModule, FormsModule, MatTableModule, MatButtonModule, CommonModule],
   templateUrl: './consulta.html',
   styleUrl: './consulta.scss'
 })
