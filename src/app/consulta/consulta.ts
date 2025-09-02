@@ -30,7 +30,7 @@ export class Consulta implements OnInit {
   }
 
   pesquisar(){
-    this.service.pesquisarClientes(this.nomeBusca);
+    this.listaClientes = this.service.pesquisarClientes(this.nomeBusca);
   }
 
 }
