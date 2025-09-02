@@ -18,6 +18,8 @@ import { CommonModule } from '@angular/common';
 })
 export class Consulta implements OnInit {
 
+  nomeBusca: string = '';
+
   listaClientes: Cliente[] = []; //cria vazio
   colunasTable: string[] = ['id', 'nome', 'cpf', 'dataNascimento', 'email'];
 
@@ -25,6 +27,10 @@ export class Consulta implements OnInit {
 
   ngOnInit() {
     this.listaClientes = this.service.pesquisarClientes(''); //preenche a lista com os clientes
+  }
+
+  pesquisar(){
+    this.service.pesquisarClientes(this.nomeBusca);
   }
 
 }
