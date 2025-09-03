@@ -24,5 +24,6 @@ export class Cadastro {
 
   Salvar() {
     this.service.salvar(this.cliente);
+    this.cliente = Cliente.NewClient(); //limpa o formulario
   }
 }
