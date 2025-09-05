@@ -19,6 +19,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class Cadastro implements OnInit {
   cliente: Cliente = Cliente.NewClient(); //cria novo cliente
+  atualizando: boolean = false; //verifica se é para atualizar ou cadastrar
+
 
   //importa um service
   constructor(private service: ClienteService,
@@ -30,7 +32,14 @@ export class Cadastro implements OnInit {
     //verifica se estou editando ou cadastrando
     this.route.queryParamMap.subscribe((query: any) => {
       const params = query['params'];
-      console.log(params);
+      const id = params['id'];
+      if(id) {
+        let clienteEncontrado = this.service.buscarClientePorId(id);
+        if(clienteEncontrado) {
+          this.atualizando = true;
+          this.cliente = clienteEncontrado;
+        }
+      }
     })
   }
 
