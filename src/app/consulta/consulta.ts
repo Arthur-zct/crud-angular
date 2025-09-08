@@ -23,6 +23,7 @@ export class Consulta implements OnInit {
 
   listaClientes: Cliente[] = []; //cria vazio
   colunasTable: string[] = ['id', 'nome', 'cpf', 'dataNascimento', 'email', 'acoes'];
+  deletando: boolean = false;
 
   constructor(private service: ClienteService,
     private router: Router
@@ -38,6 +39,14 @@ export class Consulta implements OnInit {
 
   preparaEditar(id: string){
     this.router.navigate(['/Cadastro'], { queryParams: { "id": id } });
+  }
+
+  preparaDeletar(id: string){
+    this.deletando = true;
+  }
+
+  deletar(id: string){
+    
   }
 
 }
