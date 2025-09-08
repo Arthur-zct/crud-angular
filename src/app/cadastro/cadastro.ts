@@ -3,12 +3,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms'
 import { MatFormFieldModule } from "@angular/material/form-field";
-import {MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro',
@@ -23,8 +23,10 @@ export class Cadastro implements OnInit {
 
 
   //importa um service
-  constructor(private service: ClienteService,
-    private route: ActivatedRoute //pega os parametros da rota
+  constructor(
+    private service: ClienteService,
+    private route: ActivatedRoute, //pega os parametros da rota
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -33,9 +35,9 @@ export class Cadastro implements OnInit {
     this.route.queryParamMap.subscribe((query: any) => {
       const params = query['params'];
       const id = params['id'];
-      if(id) {
+      if (id) {
         let clienteEncontrado = this.service.buscarClientePorId(id);
-        if(clienteEncontrado) {
+        if (clienteEncontrado) {
           this.atualizando = true;
           this.cliente = clienteEncontrado;
         }
@@ -44,7 +46,13 @@ export class Cadastro implements OnInit {
   }
 
   Salvar() {
-    this.service.salvar(this.cliente);
-    this.cliente = Cliente.NewClient(); //limpa o formulario
+    if (!this.atualizando) {
+      this.service.salvar(this.cliente);
+      this.cliente = Cliente.NewClient(); //limpa o formulario
+    } else {
+      this.service.atualizar(this.cliente);
+      this.router.navigate(['/Consulta']);
+    }
+
   }
 }
