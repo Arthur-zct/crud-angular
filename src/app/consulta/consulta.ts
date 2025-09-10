@@ -45,8 +45,9 @@ export class Consulta implements OnInit {
     this.deletando = true;
   }
 
-  deletar(id: string){
-    
+  deletar(cliente: Cliente){
+    this.service.deletar(cliente)
+    this.deletando = false;
   }
 
 }
