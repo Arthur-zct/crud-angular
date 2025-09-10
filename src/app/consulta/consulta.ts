@@ -47,6 +47,7 @@ export class Consulta implements OnInit {
 
   deletar(cliente: Cliente){
     this.service.deletar(cliente)
+    this.listaClientes = this.service.pesquisarClientes('');
     this.deletando = false;
   }
 
