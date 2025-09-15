@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms'
@@ -10,6 +10,7 @@ import { Cliente } from './cliente';
 import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
   selector: 'app-cadastro',
@@ -22,13 +23,14 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 export class Cadastro implements OnInit {
   cliente: Cliente = Cliente.NewClient(); //cria novo cliente
   atualizando: boolean = false; //verifica se é para atualizar ou cadastrar
-
+  
 
   //importa um service
   constructor(
     private service: ClienteService,
     private route: ActivatedRoute, //pega os parametros da rota
-    private router: Router
+    private router: Router,
+    private snack: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -51,10 +53,16 @@ export class Cadastro implements OnInit {
     if (!this.atualizando) {
       this.service.salvar(this.cliente);
       this.cliente = Cliente.NewClient(); //limpa o formulario
+      this.mostrarMensagem('Cliente cadastrado com sucesso!');
     } else {
       this.service.atualizar(this.cliente);
       this.router.navigate(['/Consulta']);
+      this.mostrarMensagem('Cliente atualizado com sucesso!');
     }
 
+  }
+
+  mostrarMensagem(mensagem: string) { 
+    this.snack.open(mensagem, "Ok", { duration: 3000 });
   }
 }
