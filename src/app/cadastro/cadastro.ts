@@ -11,6 +11,7 @@ import { ClienteService } from '../cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { BrasilApiService } from '../brasilapi.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -30,7 +31,8 @@ export class Cadastro implements OnInit {
     private service: ClienteService,
     private route: ActivatedRoute, //pega os parametros da rota
     private router: Router,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private brasilApiService: BrasilApiService,
   ) { }
 
   ngOnInit(): void {
