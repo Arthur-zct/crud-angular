@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { BrasilApiService } from '../brasilapi.service';
+import { Municipio, Estado } from '../brasilapi.models';
 
 @Component({
   selector: 'app-cadastro',
@@ -24,7 +25,8 @@ import { BrasilApiService } from '../brasilapi.service';
 export class Cadastro implements OnInit {
   cliente: Cliente = Cliente.NewClient(); //cria novo cliente
   atualizando: boolean = false; //verifica se é para atualizar ou cadastrar
-  
+  estados: Estado[] = [];
+  municipios: Municipio[] = [];
 
   //importa um service
   constructor(
@@ -49,6 +51,8 @@ export class Cadastro implements OnInit {
         }
       }
     })
+
+    this.carregarUFs();
   }
 
   Salvar() {
@@ -62,6 +66,19 @@ export class Cadastro implements OnInit {
       this.mostrarMensagem('Cliente atualizado com sucesso!');
     }
 
+  }
+
+  carregarUFs() {
+    //a chamada é assincrona então precisa do subscribe para esperar a resposta pra fazer algo com ela
+    //é um observable porque ele faz a requisição e espera a resposta
+    this.brasilApiService.listarUfs().subscribe({
+      next: listaEstados => {
+        console.log("lista estados", listaEstados);
+      }, //next é quando a resposta é sucesso
+      error: (erro) => {
+        console.error("Erro ao listar estados", erro);
+      }
+    })
   }
 
   mostrarMensagem(mensagem: string) { 
