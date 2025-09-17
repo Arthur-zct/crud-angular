@@ -69,12 +69,11 @@ export class Cadastro implements OnInit {
   }
 
   carregarUFs() {
-    //a chamada é assincrona então precisa do subscribe para esperar a resposta pra fazer algo com ela
-    //é um observable porque ele faz a requisição e espera a resposta
+    //chama o serviço para listar os estados
     this.brasilApiService.listarUfs().subscribe({
       next: listaEstados => {
-        console.log("lista estados", listaEstados);
-      }, //next é quando a resposta é sucesso
+        this.estados = listaEstados;
+      },
       error: (erro) => {
         console.error("Erro ao listar estados", erro);
       }
