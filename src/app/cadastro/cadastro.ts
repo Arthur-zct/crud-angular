@@ -50,6 +50,9 @@ export class Cadastro implements OnInit {
         if (clienteEncontrado) {
           this.atualizando = true;
           this.cliente = clienteEncontrado;
+          if(this.cliente.uf){
+            this.carregarMunicipios({value: this.cliente.uf} as MatSelectChange); //o as converte o tipo pra selectchange
+          }
         }
       }
     })
