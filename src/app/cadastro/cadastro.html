@@ -54,6 +54,20 @@
                         </div>
                     </div>
 
+
+                    <div fxLayout="row" fxLayoutAlign="start" fxLayoutGap="16px">
+                        <div fxLayout="column" fxFlex="400px">
+                            <mat-form-field class="full-width">
+                                <mat-label>Uf: *</mat-label>
+                                <mat-select>
+                                    <mat-option *ngFor="let uf of estados" [value]="uf.sigla">
+                                        {{uf.sigla}} - {{uf.nome}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
                 </mat-card-content>
                 <mat-card-actions>
                     @if(!atualizando){

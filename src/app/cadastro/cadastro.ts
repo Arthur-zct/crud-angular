@@ -13,11 +13,13 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { BrasilApiService } from '../brasilapi.service';
 import { Municipio, Estado } from '../brasilapi.models';
+import { MatSelectModule } from '@angular/material/select';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-cadastro',
   imports: [FlexLayoutModule, MatCardModule, FormsModule,
-    MatFormFieldModule, MatInputModule, MatIcon, MatButtonModule, NgxMaskDirective],
+    MatFormFieldModule, MatInputModule, MatIcon, MatButtonModule, NgxMaskDirective, MatSelectModule, CommonModule],
   providers: [provideNgxMask()],
   templateUrl: './cadastro.html',
   styleUrl: './cadastro.scss'
