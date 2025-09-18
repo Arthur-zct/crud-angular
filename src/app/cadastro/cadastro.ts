@@ -13,7 +13,7 @@ import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { MatSnackBar } from '@angular/material/snack-bar'
 import { BrasilApiService } from '../brasilapi.service';
 import { Municipio, Estado } from '../brasilapi.models';
-import { MatSelectModule } from '@angular/material/select';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -78,6 +78,16 @@ export class Cadastro implements OnInit {
       },
       error: (erro) => {
         console.error("Erro ao listar estados", erro);
+      }
+    })
+  }
+
+  carregarMunicipios(event: MatSelectChange) {
+    const ufSelecionada = event.value;
+    this.brasilApiService.listarMunicipios(ufSelecionada).subscribe({
+      next: listaMunicipios => this.municipios = listaMunicipios,
+      error: (erro) => {
+        console.error("Erro ao listar municípios", erro);
       }
     })
   }
